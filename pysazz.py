@@ -33,7 +33,8 @@ def compile():
                             except:
                                 os.makedirs(root[x][y].attrib['folder'])
                         if root[x][y].text[:4] == "http":
-                            urllib.urlretrieve (root[x][y].text, root[x][y].attrib["folder"] + "/" + root[x][y].attrib["saveas"])
+                            if not os.path.isfile(root[x][y].attrib["folder"] + "/" + root[x][y].attrib["saveas"]):
+                                urllib.urlretrieve (root[x][y].text, root[x][y].attrib["folder"] + "/" + root[x][y].attrib["saveas"])
                         if root[x][y].attrib["saveas"][-4:] == "scss" or root[x][y].attrib["saveas"][-4:] == "sass":
                             file.write("@import \"" + root[x][y].attrib["folder"] + "/" + root[x][y].attrib["saveas"] + "\";\n")
                     else:
@@ -43,12 +44,14 @@ def compile():
                             except:
                                 os.makedirs(root[x][y].attrib['folder'])
                         if root[x][y].text[:4] == "http":
-                            urllib.urlretrieve (root[x][y].text, root[x][y].attrib["folder"] + "/" + root[x][y].text.split('/')[-1])
+                            if not os.path.isfile(root[x][y].attrib["folder"] + "/" + root[x][y].text.split('/')[-1]):
+                                urllib.urlretrieve (root[x][y].text, root[x][y].attrib["folder"] + "/" + root[x][y].text.split('/')[-1])
                         if root[x][y].text.split('/')[-1][-4:] == "scss" or root[x][y].text.split('/')[-1][-4:] == "sass":
                             file.write("@import \"" + root[x][y].attrib["folder"] + "/" + root[x][y].text.split('/')[-1] + "\";\n")
                 #grabs all other files and drops them in the main directory
                 else:
-                    urllib.urlretrieve (root[x][y].text, root[x][y].text.split('/')[-1])
+                    if not os.path.isfile(root[x][y].text.split('/')[-1]) and root[x][y].text[:4] == "http":
+                        urllib.urlretrieve (root[x][y].text, root[x][y].text.split('/')[-1])
     #close main scss file
     file.close()
 
@@ -66,9 +69,6 @@ def compile():
     outputFile.close()
     
 def update():
-    print("Updating could cause files to be overwritten.  Are you sure you want to update?  y/N")
-    if input() != "y":
-        return None
     #begin XML parse
     tree = ET.parse(config)
     root = tree.getroot()
@@ -82,18 +82,30 @@ def update():
             for y in range(0, len(root[x])):
                 #gets array of attributes and puts files in appropriate directories
                 if len(root[x][y].attrib) > 0:
-                    if 'folder' in root[x][y].attrib:
-                        try:
-                            os.stat(root[x][y].attrib['folder'])
-                        except:
-                            os.makedirs(root[x][y].attrib['folder'])
-                    if root[x][y].text[:4] == "http":
-                        urllib.urlretrieve (root[x][y].text, root[x][y].attrib["folder"] + "/" + root[x][y].text.split('/')[-1])
-                    if root[x][y].text.split('/')[-1][-4:] == "scss" or root[x][y].text.split('/')[-1][-4:] == "sass":
-                        file.write("@import \"" + root[x][y].attrib["folder"] + "/" + root[x][y].text.split('/')[-1] + "\";\n")
+                    if 'saveas' in root[x][y].attrib:
+                        if 'folder' in root[x][y].attrib:
+                            try:
+                                os.stat(root[x][y].attrib['folder'])
+                            except:
+                                os.makedirs(root[x][y].attrib['folder'])
+                        if root[x][y].text[:4] == "http":
+                            urllib.urlretrieve (root[x][y].text, root[x][y].attrib["folder"] + "/" + root[x][y].attrib["saveas"])
+                        if root[x][y].attrib["saveas"][-4:] == "scss" or root[x][y].attrib["saveas"][-4:] == "sass":
+                            file.write("@import \"" + root[x][y].attrib["folder"] + "/" + root[x][y].attrib["saveas"] + "\";\n")
+                    else:
+                        if 'folder' in root[x][y].attrib:
+                            try:
+                                os.stat(root[x][y].attrib['folder'])
+                            except:
+                                os.makedirs(root[x][y].attrib['folder'])
+                        if root[x][y].text[:4] == "http":
+                            urllib.urlretrieve (root[x][y].text, root[x][y].attrib["folder"] + "/" + root[x][y].text.split('/')[-1])
+                        if root[x][y].text.split('/')[-1][-4:] == "scss" or root[x][y].text.split('/')[-1][-4:] == "sass":
+                            file.write("@import \"" + root[x][y].attrib["folder"] + "/" + root[x][y].text.split('/')[-1] + "\";\n")
                 #grabs all other files and drops them in the main directory
                 else:
-                    urllib.urlretrieve (root[x][y].text, root[x][y].text.split('/')[-1])
+                    if root[x][y].text[:4] == "http":
+                        urllib.urlretrieve (root[x][y].text, root[x][y].text.split('/')[-1])
     #close main scss file
     file.close()
 
