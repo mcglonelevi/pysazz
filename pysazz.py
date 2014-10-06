@@ -1,3 +1,7 @@
+###################################################
+#        Pysazz - By Stephen Levi McGlone         #
+###################################################
+
 #!/usr/bin/python
 import xml.etree.ElementTree as ET
 import urllib.request as urllib
@@ -129,4 +133,4 @@ elif sys.argv[1] == "compile":
 elif sys.argv[1] == "update":
     update()
 else:
-    print ("Invalid, type sasspy help for more information")
+    print ("Invalid, please use valid command.")
