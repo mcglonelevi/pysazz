@@ -12,7 +12,7 @@ def init():
     file.write("<?xml version=\"1.0\"?>\n<config>\n\t<links>\n\t\t<link folder=\"\">http://mtechnologies.site.nfoservers.com/_file3.scss</link>\n\t</links>\n</config>")
     file.close()
 
-def compile():
+def compiled():
     #begin XML parse
     tree = ET.parse(config)
     root = tree.getroot()
@@ -125,7 +125,7 @@ def update():
 if sys.argv[1] == "init":
     init()
 elif sys.argv[1] == "compile":
-    compile()
+    compiled()
 elif sys.argv[1] == "update":
     update()
 else:
