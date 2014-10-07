@@ -9,11 +9,13 @@ Set up a variable in your path for the executable: pysazz.py, or you can run it 
 
 ##Commands
 
-At the moment Pysazz has 2 commands:
+At the moment Pysazz has 3 commands:
 
 pysazz init - creates the basic config file
 
 pysazz compile [-arg] - downloads files and compiles, arguments are optional, but the include "-compressed", "-compact", "-expanded".  "-nested" is the default argument.
+
+pysazz update - redownloads all files and overwrites them.  Be careful when using as any changes made to downloaded files will be overwritten.
 
 ##Dependencies.
 
