@@ -11,7 +11,23 @@
             </div>
             <div class="col-xs-12">
                 <p>Pysazz is a CSS Framework Build tool that utilizes SASS as a way to combine CSS from your favorite frameworks.  Pysazz gives you the ability to take the buttons from Bootstrap, combine it with your favorite CSS reset, and write your own SASS files and then compile those files into your own CSS framework.</p>
-                <p>Pysazz is a command-line interface written in Python.  Pysazz is easy-to-use, cross-platform, and compatible with any existing CSS or SASS files.  This means that you can use any SASS or CSS file from any of your favorite frameworks and have it compiled into your own unique framework.</p>
+                <p>Pysazz is a command-line interface written in Python.  Pysazz is easy-to-use, cross-platform, and compatible with any existing CSS or SASS files.  This means that you pick your favorite features from any existing CSS frameworks and have these features compiled into your own unique framework.</p>
+            </div>
+            <div class="col-xs-12">
+                <h2 id="installation">Installation</h2>
+                <p>Pysazz will eventially have compiled executables to run, but for now, just drop the "pysazz.py" file into your project.  Pysazz's dependencies include Python 3.4.1 and libsass for Python which you can download here: <a href="https://pypi.python.org/pypi/libsass">https://pypi.python.org/pypi/libsass</a></p>
+            </div>
+            <div class="col-xs-12">
+                <h2 id="usage">Usage</h2>
+                <p>At the moment, Pysazz has three basic commands:</p>
+                <ul>
+                    <li>pysazz init</li>
+                    <li>pysazz compile [args]</li>
+                    <li>pysazz update</li>
+                </ul>
+                <p><code>pysazz init</code> generates a basic xml configuration file for your framework, see configuration to learn how to edit this file.</p>
+                <p><code>pysazz compile [args]</code> downloads any files that do not already exist and compiles them into a CSS file.  If a file has already been downloaded, pysazz will not overwrite it.  Possible arguments include -compressed, -compact, -nested, and -expanded.</p>
+                <p><code>pysazz update</code> updates your entire codebase.  The update command will redownload and overwrite all files included in your config file and recompile the CSS.  Be careful when using this as any changes you have made to downloaded files will be overwritten.</p>
             </div>
         </div>
     </div>
