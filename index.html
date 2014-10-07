@@ -38,22 +38,38 @@
 &lt;?xml version="1.0"?&gt;
 &lt;config&gt;
     &lt;links&gt;
-        &lt;link folder="partials" saveas="_reset.scss"&gt;http://meyerweb.com/eric/tools/css/reset/reset.css&lt;/link&gt;
-        &lt;link folder="partials/mixins"&gt;//raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/mixins/_buttons.scss&lt;/link&gt;
-        &lt;link folder="partials/mixins"&gt;//raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/mixins/_tab-focus.scss&lt;/link&gt;
-        &lt;link folder="partials/mixins"&gt;//raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/mixins/_vendor-prefixes.scss&lt;/link&gt;
-        &lt;link folder="partials/mixins"&gt;//raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/mixins/_clearfix.scss&lt;/link&gt;
-        &lt;link folder="partials/mixins"&gt;//raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/mixins/_opacity.scss&lt;/link&gt;
-        &lt;link folder="partials/mixins"&gt;//raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/mixins/_grid-framework.scss&lt;/link&gt;
-        &lt;link folder="partials/mixins"&gt;//raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/mixins/_grid.scss&lt;/link&gt;
-        &lt;link folder="partials"&gt;//raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/_variables.scss&lt;/link&gt;
-        &lt;link folder="partials"&gt;//raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/_normalize.scss&lt;/link&gt;
-        &lt;link folder="partials"&gt;//raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/_buttons.scss&lt;/link&gt;
-        &lt;link folder="partials"&gt;//raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/_grid.scss&lt;/link&gt;
+        &lt;link folder="partials" saveas="_reset.scss"&gt;http:http://meyerweb.com/eric/tools/css/reset/reset.css&lt;/link&gt;
+        &lt;link folder="partials/mixins"&gt;http://raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/mixins/_buttons.scss&lt;/link&gt;
+        &lt;link folder="partials/mixins"&gt;http://raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/mixins/_tab-focus.scss&lt;/link&gt;
+        &lt;link folder="partials/mixins"&gt;http://raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/mixins/_vendor-prefixes.scss&lt;/link&gt;
+        &lt;link folder="partials/mixins"&gt;http://raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/mixins/_clearfix.scss&lt;/link&gt;
+        &lt;link folder="partials/mixins"&gt;http://raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/mixins/_opacity.scss&lt;/link&gt;
+        &lt;link folder="partials/mixins"&gt;http://raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/mixins/_grid-framework.scss&lt;/link&gt;
+        &lt;link folder="partials/mixins"&gt;http://raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/mixins/_grid.scss&lt;/link&gt;
+        &lt;link folder="partials"&gt;http://raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/_variables.scss&lt;/link&gt;
+        &lt;link folder="partials"&gt;http://raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/_normalize.scss&lt;/link&gt;
+        &lt;link folder="partials"&gt;http://raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/_buttons.scss&lt;/link&gt;
+        &lt;link folder="partials"&gt;http://raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/_grid.scss&lt;/link&gt;
     &lt;/links&gt;
 &lt;/config&gt;
                     </code>
                 </pre>
+                <p>Every file to be included in the final compiled CSS must be put in a link tag.  Link tags can have a folder attribute and a saveas attribute.  Saveas is used to rename .css and sass files to avoid naming conflicts.  If you wish to include a .css file in your project, you will need to use the saveas attribute to rename the file to "_NameOfFile.scss".  The folder attribute tells Pysazz the file structure of your css framework, and it also saves the download file in the folder that you specify.  You do not need to specify a trailing slash.  The folders do not need to be created prior to running Pysazz.  It will generate them for you automatically if they are not already created.</p>
+                <p>Inside the link tag, you can specify files to be download by providing a url that starts with "http" or by specifying a relative URL path.  It is also important to note that you can also include javascript, font, and image files in your configuration file, but you will need to add these files manually to your CSS or HTML document.</p>
+                <p>Please read Best Practices</p>
+            </div>
+            <div class="col-xs-12">
+                <h2 id="bestpractices">Best Practices</h2>
+                <p>It is advised that you structure your config file in the following manner:</p>
+                <ol>
+                    <li>CSS Reset</li>
+                    <li>A custom sass file</li>
+                    <li>Variable Files</li>
+                    <li>Mixins</li>
+                    <li>Partial sass files</li>
+                    <li>A custom sass file</li>
+                </ol>
+                <p>When Sass compiles your CSS, it reads from top-to-bottom.  Your CSS is also output in a top-to-bottom manner.  This is why the files must be specified in this way.  It is recommended that you put a CSS Reset and a custom file in the first two spots so that you will not run into problems having default CSS behaviors set by other files.  Sass files containing variables need to be specified at the top so that the mixins can have the proper information to compile.  Any Sass files that contain mixins should be specified after the variables and before the partial sass files that use the mixins as dependencies.  Finally, declare your own custom partial sass file at the end of the configuration file so that you can override and write your own css to add to your framework.</p>
             </div>
         </div>
     </div>
