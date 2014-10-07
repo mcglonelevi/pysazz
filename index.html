@@ -29,6 +29,32 @@
                 <p><code>pysazz compile [args]</code> downloads any files that do not already exist and compiles them into a CSS file.  If a file has already been downloaded, pysazz will not overwrite it.  Possible arguments include -compressed, -compact, -nested, and -expanded.</p>
                 <p><code>pysazz update</code> updates your entire codebase.  The update command will redownload and overwrite all files included in your config file and recompile the CSS.  Be careful when using this as any changes you have made to downloaded files will be overwritten.</p>
             </div>
+            <div class="col-xs-12">
+                <h2>Configuration</h2>
+                <p>Running <code>pysazz init</code> will generate a file called "pysazz.config.xml".  This file is where you will specify the file structure and css files for your project.</p>
+                <p>Here is an example of a pysazz config file:</p>
+                <pre>
+                    <code>
+                        <?xml version="1.0"?>
+                        <config>
+                            <links>
+                                <link folder="partials" saveas="_reset.scss">http://meyerweb.com/eric/tools/css/reset/reset.css</link>
+                                <link folder="partials/mixins">https://raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/mixins/_buttons.scss</link>
+                                <link folder="partials/mixins">https://raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/mixins/_tab-focus.scss</link>
+                                <link folder="partials/mixins">https://raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/mixins/_vendor-prefixes.scss</link>
+                                <link folder="partials/mixins">https://raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/mixins/_clearfix.scss</link>
+                                <link folder="partials/mixins">https://raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/mixins/_opacity.scss</link>
+                                <link folder="partials/mixins">https://raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/mixins/_grid-framework.scss</link>
+                                <link folder="partials/mixins">https://raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/mixins/_grid.scss</link>
+                                <link folder="partials">https://raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/_variables.scss</link>
+                                <link folder="partials">https://raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/_normalize.scss</link>
+                                <link folder="partials">https://raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/_buttons.scss</link>
+                                <link folder="partials">https://raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/_grid.scss</link>
+                            </links>
+                        </config>
+                    </code>
+                </pre>
+            </div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
